@@ -23,33 +23,36 @@ class _ChatsIosScreenState extends State<ChatsIosScreen> {
       child: ListView.builder(
         itemCount:providerW!.ContactList.length ,
         itemBuilder: (context, index) =>
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 80,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: CupertinoColors.lightBackgroundGray),
-                      ),
-                      Column(
-                        children: [
-                          Text("${providerW!.ContactList[index].name}"),
-                          Text("${providerW!.ContactList[index].no}"),
-                        ],
-                      ),
-                      Spacer(),
-                      Text("${providerW!.date.day}-${providerW!.date.month}-${providerW!.date.year}"),
-                      SizedBox(width: 20,),
-                      Text("${providerW!.time.hour}:${providerW!.time.minute}"),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 80,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: CupertinoColors.lightBackgroundGray),
+                        ),
+                        Column(
+                          children: [
+                            Text("${providerW!.ContactList[index].name}"),
+                            Text("${providerW!.ContactList[index].no}"),
+                          ],
+                        ),
+                        Spacer(),
+                        Text("${providerW!.date.day}-${providerW!.date.month}-${providerW!.date.year}"),
+                        SizedBox(width: 20,),
+                        Text("${providerW!.time.hour}:${providerW!.time.minute}"),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
       ),
     ));

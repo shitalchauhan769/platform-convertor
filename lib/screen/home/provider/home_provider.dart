@@ -19,75 +19,79 @@ class HomeProvider with ChangeNotifier
   String? path;
   bool isIosTheme=false;
   List<SettingModel>SettingList=[];
-  void addSetting(SettingModel model)
-  {
+  void addSetting(SettingModel model) {
     SettingList.add(model);
     notifyListeners();
 
   }
 
-  void changeImage(String? path)
-  {
+  void changeImage(String? path) {
     selectedImage = path;
     notifyListeners();
 
   }
+
   void changeUi() {
     isIos=!isIos;
     notifyListeners();
   }
+
   void setTheme(String theme) {
-    ShardHalper shr =ShardHalper();
+    ShardHelper shr =ShardHelper();
     shr.setTheme(theme);
     getTheme();
   }
+
   Future<void> getTheme() async {
-    ShardHalper shr =ShardHalper();
+    ShardHelper shr =ShardHelper();
     theme=await shr.getTheme();
     notifyListeners();
   }
-  void setIosTheme(String theme)
-  {
-    ShardHalper s1=ShardHalper();
-    s1.setTheme(theme);
+
+  void setIosTheme(String theme) {
+    ShardHelper shr =ShardHelper();
+    shr.setTheme(theme);
     notifyListeners();
     getTheme();
   }
-  Future<void> getIosTheme()
-  async {
-    ShardHalper s1=ShardHalper();
-   theme= await s1.getTheme();
+
+  Future<void> getIosTheme() async {
+    ShardHelper shr =ShardHelper();
+   theme= await shr.getTheme();
    notifyListeners();
   }
+
   void changeProfile() {
      isProfile=!isProfile;
      notifyListeners();
   }
+
   void changDate(DateTime d1) {
     date=d1;
     notifyListeners();
   }
+
   void changTime(TimeOfDay d1) {
     time=d1;
     notifyListeners();
   }
-  void addContactData(ContactModel contact)
-  {
+
+  void addContactData(ContactModel contact) {
     SelactedContact=contact;
     notifyListeners();
   }
-  void addContact(ContactModel model)
-  {
+
+  void addContact(ContactModel model) {
     ContactList.add(model);
     notifyListeners();
   }
-  void addPath(String p1)
-  {
+
+  void addPath(String p1) {
     path=p1;
     notifyListeners();
   }
-  void checkTheme()
-  {
+
+  void checkTheme() {
     isIosTheme=!isIosTheme;notifyListeners();
   }
 }

@@ -21,7 +21,7 @@ class _HomeIosScreenState extends State<HomeIosScreen> {
     providerW=context.watch<HomeProvider>();
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text("Platform Convertor"),
+        middle: const Text("Platform Convertor",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
         trailing: CupertinoSwitch(
           value: providerW.isIos,
           onChanged: (value) {
@@ -31,7 +31,7 @@ class _HomeIosScreenState extends State<HomeIosScreen> {
       ),
         child: CupertinoTabScaffold(
           tabBar: CupertinoTabBar(
-            items: [
+            items: const [
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.person),label: "contact"),
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.chat_bubble),label: "chats"),
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone),label: "call"),

@@ -1,7 +1,7 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ShardHalper
+class ShardHelper
 {
   Future<void> setTheme(String ThemeName)
   async {

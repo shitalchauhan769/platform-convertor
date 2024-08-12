@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platform_convertor_app/screen/settings/model/setting_model.dart';
@@ -16,12 +15,13 @@ class SettingAndroidScreen extends StatefulWidget {
 }
 
 class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
-  HomeProvider? providerR ;
-  HomeProvider? providerW ;
-  TextEditingController txtname=TextEditingController();
-  TextEditingController txtdio=TextEditingController();
-  GlobalKey<FormState>formkey=GlobalKey<FormState>();
+  HomeProvider? providerR;
 
+  HomeProvider? providerW;
+
+  TextEditingController txtname = TextEditingController();
+  TextEditingController txtdio = TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,20 +37,26 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Icon(Icons.account_circle_outlined),
-                    Spacer(),
+                    const Icon(Icons.account_circle_outlined),
+                    const Spacer(),
                     const Column(
                       children: [
                         Text("Profile"),
                         Text("Update Profile data"),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
-                        onPressed: () {
-                          providerR!.changeProfile();
-                        },
-                        icon: Icon(Icons.arrow_forward_ios_outlined)),
+                      onPressed: () {
+                        providerR!.changeProfile();
+                      },
+                      icon: providerW!.isProfile
+                          ? const Icon(
+                              Icons.keyboard_arrow_down_sharp,
+                              size: 40,
+                            )
+                          : const Icon(Icons.arrow_forward_ios_outlined),
+                    ),
                   ],
                 ),
               ),
@@ -63,13 +69,14 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundImage: FileImage(File("${providerW!.selectedImage}")),
+                          backgroundImage:
+                              FileImage(File("${providerW!.selectedImage}")),
                           radius: 80,
-                          child:IconButton(
+                          child: IconButton(
                               onPressed: () async {
                                 ImagePicker picker = ImagePicker();
-                                XFile?  image =
-                                await picker.pickImage(source: ImageSource.gallery);
+                                XFile? image = await picker.pickImage(
+                                    source: ImageSource.gallery);
 
                                 providerR!.changeImage(image!.path);
                               },
@@ -85,12 +92,9 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                         TextFormField(
                           controller: txtname,
                           decoration: const InputDecoration(
-                            hintText: "name",
-                            label: Text("Enter name"),
-                            border: OutlineInputBorder()
-                          ),
-
-
+                              hintText: "name",
+                              label: Text("Enter name"),
+                              border: OutlineInputBorder()),
                         ),
                         const SizedBox(
                           height: 20,
@@ -98,35 +102,31 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                         TextFormField(
                           controller: txtdio,
                           decoration: const InputDecoration(
-                            hintText: "biodata",
-                            label: Text("Enter bio"),
-                            border: OutlineInputBorder()
-                          ),
+                              hintText: "bayoData",
+                              label: Text("Enter bio"),
+                              border: OutlineInputBorder()),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                               onPressed: () {
-                                if(formkey.currentState!.validate()) {
-
-                                  SettingModel s1= SettingModel(
-                                       name:txtname.text,
-                                       bio: txtdio.text,
+                                if (formkey.currentState!.validate()) {
+                                  SettingModel s1 = SettingModel(
+                                    name: txtname.text,
+                                    bio: txtdio.text,
                                   );
                                   providerR!.addSetting(s1);
-
                                 }
                               },
-                              child: Text("Save"),
+                              child: const Text("Save"),
                             ),
                             const SizedBox(
                               width: 40,
                             ),
                             TextButton(
-                              onPressed: () {
-                              },
-                              child: Text("Cansel"),
+                              onPressed: () {},
+                              child: const Text("Cansel"),
                             ),
                           ],
                         )
@@ -138,23 +138,29 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
               const SizedBox(
                 height: 10,
               ),
+              Divider(color: Colors.grey.shade100,thickness: 0.1,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Icon(Icons.change_circle),
-                    Spacer(),
+                    const Icon(Icons.light_mode),
+                    const Spacer(),
                     const Column(
                       children: [
                         Text("Theme"),
                         Text("Change Theme"),
                       ],
                     ),
-                    Spacer(),
-                   Switch(value:providerW!.isIosTheme , onChanged: (value) {
-                      providerR!.checkTheme();
-
-                    },)
+                    const Spacer(),
+                    Switch(
+                      value: providerW!.isIosTheme,
+                      onChanged: (value) {
+                        providerR!.checkTheme();
+                      },
+                    )
                   ],
                 ),
               ),

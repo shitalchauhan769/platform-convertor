@@ -23,7 +23,7 @@ class _HomeAndroidScreenState extends State<HomeAndroidScreen> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Platform Convertor"),
+          title: const Text("Platform Convertor"),
           actions: [
             Switch(value:providerW.isIos , onChanged: (value) {
               providerR.changeUi();

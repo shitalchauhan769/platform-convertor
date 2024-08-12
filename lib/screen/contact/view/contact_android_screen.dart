@@ -21,7 +21,7 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
   TextEditingController txtName = TextEditingController();
   TextEditingController txtNo = TextEditingController();
   TextEditingController txtChats = TextEditingController();
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   DateTime? d1;
   TimeOfDay? time;
   String? path;
@@ -35,7 +35,7 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
       padding: const EdgeInsets.all(10.0),
       child: SingleChildScrollView(
         child: Form(
-          key: formkey,
+          key: formKey,
           child: Column(
             children: [
               Column(
@@ -139,10 +139,10 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
                           lastDate: DateTime(2030));
                       providerR.changDate(d1!);
                     },
-                    label:d1 ==null? const Text("Date pick") : Text(
+                    label:d1 == null ? Text(
                         "${providerW.date.day}/${providerW.date.month}/${providerW
-                            .date.year}"),
-                    icon: Icon(Icons.calendar_month),
+                            .date.year}"):const Text("Date pick") ,
+                    icon: const Icon(Icons.calendar_month),
                   ),
                   TextButton.icon(
                     onPressed: () async {
@@ -151,13 +151,13 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
                       providerR.changTime(time!);
                     },
                     label:time==null?const Text("Datetime pick"): Text("${providerW.time.hour}:${providerW.time.minute}"),
-                    icon: Icon(Icons.punch_clock_sharp),
+                    icon: const Icon(Icons.punch_clock_sharp),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: TextButton(
                         onPressed: () {
-                          if (formkey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                            ContactModel c1 =ContactModel(
                                no: txtNo.text,
                                name: txtName.text,
@@ -174,7 +174,7 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
 
                           }
                         },
-                        child: Text("Save")),
+                        child: const Text("Save"),),
                   )
                 ],
               ),
