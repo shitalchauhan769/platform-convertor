@@ -16,21 +16,22 @@ class SettingAndroidScreen extends StatefulWidget {
 
 class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
   HomeProvider? providerR;
-
   HomeProvider? providerW;
 
-  TextEditingController txtname = TextEditingController();
-  TextEditingController txtdio = TextEditingController();
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtBio = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: formkey,
+          key: formKey,
           child: Column(
             children: [
               Padding(
@@ -90,33 +91,47 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                           height: 20,
                         ),
                         TextFormField(
-                          controller: txtname,
+                          controller: txtName,
                           decoration: const InputDecoration(
                               hintText: "name",
                               label: Text("Enter name"),
-                              border: OutlineInputBorder()),
+                              border: OutlineInputBorder(),
+                          ),
+                          validator: (value) {
+                            if(value!.isEmpty)
+                              {
+                                return"please name enter";
+                              }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
-                          controller: txtdio,
+                          controller: txtBio,
                           decoration: const InputDecoration(
-                              hintText: "bayoData",
+                              hintText: "bio Data",
                               label: Text("Enter bio"),
-                              border: OutlineInputBorder()),
+                              border: OutlineInputBorder(),
+                          ),
+                          validator: (value) {
+                            if(value!.isEmpty)
+                            {
+                              return"please bio enter";
+                            }
+                            return null;
+                          },
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                               onPressed: () {
-                                if (formkey.currentState!.validate()) {
-                                  SettingModel s1 = SettingModel(
-                                    name: txtname.text,
-                                    bio: txtdio.text,
-                                  );
-                                  providerR!.addSetting(s1);
+                                if (formKey.currentState!.validate()) {
+
+                                  providerR!.setDataName(txtName.text);
+                                  providerR!.setBio(txtBio.text);
                                 }
                               },
                               child: const Text("Save"),
@@ -156,9 +171,9 @@ class _SettingAndroidScreenState extends State<SettingAndroidScreen> {
                     ),
                     const Spacer(),
                     Switch(
-                      value: providerW!.isIosTheme,
+                      value: providerW!.theme!,
                       onChanged: (value) {
-                        providerR!.checkTheme();
+                        providerR!.setTheme(value);
                       },
                     )
                   ],

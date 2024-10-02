@@ -8,8 +8,7 @@ import '../../settings/model/setting_model.dart';
 class HomeProvider with ChangeNotifier
 {
   bool isIos=false;
-  String? themeName="System";
-  String? theme;
+  bool? theme= false;
   bool isProfile=false;
   DateTime date=DateTime.now();
   TimeOfDay time=TimeOfDay.now();
@@ -17,10 +16,13 @@ class HomeProvider with ChangeNotifier
   ContactModel? SelactedContact;
   String? selectedImage;
   String? path;
-  bool isIosTheme=false;
-  List<SettingModel>SettingList=[];
+  String? name;
+  String? bio;
+
+  List<SettingModel>settingList=[];
+
   void addSetting(SettingModel model) {
-    SettingList.add(model);
+    settingList.add(model);
     notifyListeners();
 
   }
@@ -36,30 +38,18 @@ class HomeProvider with ChangeNotifier
     notifyListeners();
   }
 
-  void setTheme(String theme) {
-    ShardHelper shr =ShardHelper();
-    shr.setTheme(theme);
+  void setTheme(bool theme) {
+    ShardHelper helper=ShardHelper();
+    helper.setTheme(theme);
     getTheme();
   }
 
-  Future<void> getTheme() async {
-    ShardHelper shr =ShardHelper();
-    theme=await shr.getTheme();
+  void getTheme()async{
+    ShardHelper helper=ShardHelper();
+    theme = (await helper.getTheme())!;
     notifyListeners();
   }
 
-  void setIosTheme(String theme) {
-    ShardHelper shr =ShardHelper();
-    shr.setTheme(theme);
-    notifyListeners();
-    getTheme();
-  }
-
-  Future<void> getIosTheme() async {
-    ShardHelper shr =ShardHelper();
-   theme= await shr.getTheme();
-   notifyListeners();
-  }
 
   void changeProfile() {
      isProfile=!isProfile;
@@ -92,6 +82,35 @@ class HomeProvider with ChangeNotifier
   }
 
   void checkTheme() {
-    isIosTheme=!isIosTheme;notifyListeners();
+    theme=theme;notifyListeners();
   }
+
+  void setDataName(String name)
+  {
+    ShardHelper helper=ShardHelper();
+    helper.setNameData(name);
+  }
+
+  void getDataName()
+  async
+  {
+    ShardHelper helper=ShardHelper();
+    name = await helper.getNameData();
+    notifyListeners();
+  }
+
+  void setBio(String Bio)
+  {
+    ShardHelper helper=ShardHelper();
+    helper.setBio(Bio);
+  }
+
+  Future<void> getBio()
+  async
+  {
+    ShardHelper helper=ShardHelper();
+    bio = await helper.getBio();
+    notifyListeners();
+  }
+
 }

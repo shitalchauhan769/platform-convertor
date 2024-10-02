@@ -17,14 +17,14 @@ void main() {
               ? MaterialApp(
                   theme: lightTheme,
                   darkTheme: darkTheme,
-                  themeMode:value.isIosTheme ==false?ThemeMode.light:ThemeMode.dark,
+                  themeMode:value.theme ==false?ThemeMode.light:ThemeMode.dark,
                   debugShowCheckedModeBanner: false,
                   routes: app_routesAndroid,
                 )
               : CupertinoApp(
                   debugShowCheckedModeBanner: false,
                   routes: app_routesIos,
-                  theme: value.isIosTheme ==false?light:dark
+                  theme: value.theme ==false?light:dark
                 )),
     ),
   );

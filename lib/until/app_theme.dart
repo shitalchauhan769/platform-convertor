@@ -11,14 +11,11 @@ ThemeData lightTheme = ThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Primary),
           textStyle:MaterialStateProperty.all(
-            TextStyle(color: Colors.white),
+            const TextStyle(color: Colors.white),
           ),
           foregroundColor: MaterialStateProperty.all(Colors.black),
         )));
 ThemeData darkTheme = ThemeData(
-
-
-
 
     floatingActionButtonTheme:
     FloatingActionButtonThemeData(backgroundColor: Primary),

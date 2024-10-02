@@ -25,7 +25,7 @@ class _ChatsAndroidScreenState extends State<ChatsAndroidScreen> {
         itemCount: providerW!.ContactList.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-           showDilogBoxe();
+             showDilogBoxe();
           },
           child: Column(
             children: [
