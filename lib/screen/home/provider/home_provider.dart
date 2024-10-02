@@ -46,7 +46,7 @@ class HomeProvider with ChangeNotifier
 
   void getTheme()async{
     ShardHelper helper=ShardHelper();
-    theme = (await helper.getTheme())!;
+    theme = await helper.getTheme();
     notifyListeners();
   }
 

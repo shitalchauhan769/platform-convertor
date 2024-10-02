@@ -133,24 +133,24 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
                   ),
                   TextButton.icon(
                     onPressed: () async {
-                      DateTime? d1 = await showDatePicker(
+                       d1 = await showDatePicker(
                           context: context,
                           firstDate: DateTime(2001),
                           lastDate: DateTime(2030));
                       providerR.changDate(d1!);
                     },
-                    label:d1 == null ? Text(
+                    label:d1 == null ? const Text("Date pick"):Text(
                         "${providerW.date.day}/${providerW.date.month}/${providerW
-                            .date.year}"):const Text("Date pick") ,
+                            .date.year}") ,
                     icon: const Icon(Icons.calendar_month),
                   ),
                   TextButton.icon(
                     onPressed: () async {
-                      TimeOfDay? time = await showTimePicker(
-                          context: context, initialTime: TimeOfDay.now());
-                      providerR.changTime(time!);
+                      time = await showTimePicker(
+                          context: context, initialTime: providerW.time);
+                      providerW.changTime(time!);
                     },
-                    label:time==null?const Text("Datetime pick"): Text("${providerW.time.hour}:${providerW.time.minute}"),
+                    label:time==null? const Text("Datetime pick"): Text("${providerW.time.hour}:${providerW.time.minute}"),
                     icon: const Icon(Icons.punch_clock_sharp),
                   ),
                   Align(
@@ -170,6 +170,8 @@ class _ContactAndroidScreenState extends State<ContactAndroidScreen> {
                            txtName.clear();
                            txtNo.clear();
                            txtChats.clear();
+                           time=null;
+                           d1=null;
 
 
                           }

@@ -111,10 +111,6 @@ class _ContactIosScreenState extends State<ContactIosScreen> {
                                child: CupertinoDatePicker(
                                  initialDateTime: providerW.date,
                                  onDateTimeChanged: (value) async {
-                                   // DateTime? d1 = await showDatePicker(
-                                   //     context: context,
-                                   //     firstDate: DateTime(2001),
-                                   //     lastDate: DateTime(2030));
                                    providerR.changDate(value);
                                  },
                                  mode: CupertinoDatePickerMode.date,
@@ -142,7 +138,7 @@ class _ContactIosScreenState extends State<ContactIosScreen> {
                        showCupertinoModalPopup(
                          context: context,
                          builder: (context) {
-                           return Container(
+                           return SizedBox(
                              height: 400,
                              child: CupertinoDatePicker(
                                onDateTimeChanged: (value) {
@@ -159,7 +155,7 @@ class _ContactIosScreenState extends State<ContactIosScreen> {
                      child: Row(
                        mainAxisAlignment: MainAxisAlignment.center,
                        children: [
-                         Icon(CupertinoIcons.clock),
+                         const Icon(CupertinoIcons.clock),
                          const SizedBox(
                            width: 10,
                          ),
